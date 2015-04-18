@@ -2,6 +2,7 @@
 int lastMillis;
 
 Fighter testFighter;
+ArrayList<Explosion> explosions;
 DebugUI debugUI;
 
 void setup() {
@@ -13,6 +14,7 @@ void setup() {
   
   debugUI = new DebugUI(8, 8);
   testFighter = new Fighter(width/2, height/2);
+  explosions = new ArrayList<Explosion>();
   
   lastMillis = millis();
 }
@@ -22,6 +24,11 @@ void draw() {
   lastMillis = millis();
   
   testFighter.update(delta);
+  for(int i = 0; i < explosions.size(); ++i){
+    Explosion explosion = (Explosion) explosions.get(i);
+    explosion.update(delta);
+    explosion.display(delta);
+  }
   debugUI.update(delta);
   
   fill(0, 2 * delta);
@@ -30,4 +37,8 @@ void draw() {
   
   testFighter.display(delta);
   debugUI.display();
+}
+
+void mousePressed(){
+  explosions.add(new Explosion(new PVector(width/2, height/2), 40, 2, 5, 5));
 }
