@@ -25,8 +25,20 @@ void setup() {
   spaceColony = new ArrayList<Block>();
   for(int x=0; x<width/BLOCK_SIZE; x++) {
     for(int y=0; y<height/BLOCK_SIZE; y++) {
-      if ( dist(x, y, width/BLOCK_SIZE/2, height/BLOCK_SIZE/2) < 5) {
-        spaceColony.add( new Block(x*BLOCK_SIZE, y*BLOCK_SIZE) );
+      float dist = dist(x, y, width/BLOCK_SIZE/2, height/BLOCK_SIZE/2);
+      if ( dist < 7 && dist > 6) {
+        Block b = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
+        spaceColony.add( b );
+        b.cFill = #2C3E43;
+      }
+      else if ( dist < 6 && dist > 5) {
+        Block b = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
+        spaceColony.add( b );
+      }
+      else if ( dist < 5.1 && dist > 4) {
+        Block b = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
+        spaceColony.add( b );
+        b.cFill = #1A2027;
       }
     }
   }
