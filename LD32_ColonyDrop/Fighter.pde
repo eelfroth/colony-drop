@@ -41,6 +41,12 @@ class Fighter {
       bullets.add(new Bullet(location.x, location.y, rotation, 5));
     //physics?
     
+    //update bullets
+    for(int i = 0; i < bullets.size(); ++i){
+      Bullet bullet = (Bullet) bullets.get(i);
+      bullet.update(delta);
+    }
+    
     //update vectors
     velocity.add( PVector.mult(polarVector(rotation, acceleration), delta) );
     location.add( PVector.mult(velocity, delta) );
@@ -50,8 +56,13 @@ class Fighter {
     /*
       placeholder triangle
     */
+    for(int i = 0; i < bullets.size(); ++i){
+      Bullet bullet = (Bullet) bullets.get(i);
+      bullet.display(delta);
+    }
+  
     pushMatrix();
-      
+        
       translate(location.x, location.y);
       rotate(rotation);
       
