@@ -1,7 +1,12 @@
+//constants
+final int BLOCK_SIZE = 32;
 
+//global variables
 int lastMillis;
 
+//global pointers
 Fighter testFighter;
+ArrayList<Block> spaceColony;
 ArrayList<Explosion> explosions;
 DebugUI debugUI;
 
@@ -56,6 +61,10 @@ void draw() {
   noStroke();
   rect(0, 0, width, height);
   
+  for(int i=0; i<spaceColony.size(); i++) {
+    Block b = spaceColony.get(i);
+    b.display();
+  }
   testFighter.display(delta);
   debugUI.display();
 }
