@@ -53,6 +53,9 @@ void draw() {
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
     explosion.update(delta);
+    if(explosion.particles.size() < 1) {
+      explosions.remove(i--);
+    }
   }
   debugUI.update(delta);
   
