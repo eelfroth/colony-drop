@@ -15,6 +15,7 @@ class Bullet{
   }
   
   void display(int delta){
+   
     pushMatrix();
       
       translate(location.x, location.y);
@@ -23,8 +24,10 @@ class Bullet{
       fill(0);
       strokeWeight(1);
       
-      ellipse( location.x, location.y, r, r);
+      ellipse( 0,0, r, r);
 
     popMatrix();
+   
+    // ellipse( location.x, location.y, r, r);
   }
 }
