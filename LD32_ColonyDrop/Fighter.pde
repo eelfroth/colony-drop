@@ -4,6 +4,7 @@ class Fighter {
   PVector location, velocity;
   float rotation, acceleration;
   float length, width, propulsion, rotationSpeed;
+  ArrayList<Bullet> bullets;
   
   Fighter(float x, float y) {
     
@@ -16,6 +17,8 @@ class Fighter {
     width = 24.0;
     propulsion = 0.0004;
     rotationSpeed = 0.01;
+    
+    bullets = new ArrayList<Bullet>();
     
   }
   
@@ -34,7 +37,8 @@ class Fighter {
       rotation -= rotationSpeed * delta;
     if (key_right)
       rotation += rotationSpeed * delta;
-    
+    if(key_shoot)
+      bullets.add(new Bullet(location.x, location.y, rotation, 5));
     //physics?
     
     //update vectors
