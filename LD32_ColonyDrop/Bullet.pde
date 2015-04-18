@@ -12,7 +12,7 @@ class Bullet{
   
   void update(int delta){
     location.add( PVector.mult(velocity, delta) );
-    r -= 0.1;
+    r -= 0.01*delta;
   }
   
   void display(int delta){
