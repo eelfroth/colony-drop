@@ -10,7 +10,7 @@ class Explosion{
      particles = new ArrayList<Particle>();
      for(int i = 0; i < _particleCount; ++i){
        float direction = random(0, TWO_PI);
-       particles.add(new Particle(location, direction, random(_particleMinSpeed, particleMaxSpeed), random(1, _particleMaxRadius)));
+       particles.add(new Particle(location, random(_particleMinSpeed, particleMaxSpeed), random(1, _particleMaxRadius)));
      }
    }
    
@@ -35,9 +35,9 @@ class Particle{
   PVector location, velocity;
   float radius;
   
-  Particle(PVector _location, float _rotation, float _speed, float _radius){
+  Particle(PVector _location, float _speed, float _radius){
     location = _location;
-    velocity = polarVector(_rotation, _speed);
+    velocity = polarVector(random(0, TWO_PI), _speed);
     radius = _radius;
   }
   
