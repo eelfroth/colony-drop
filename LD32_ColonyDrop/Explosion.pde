@@ -18,8 +18,10 @@ class Explosion{
     for(int i = 0; i < particles.size(); ++i){
       Particle particle = (Particle) particles.get(i);
       particle.update(delta);
-      if(particle.radius <= 0) 
+      if(particle.radius <= 0) { 
         particles.remove(i);
+        i--;
+      }
     }
   }
     
@@ -36,7 +38,8 @@ class Particle{
   float radius;
   
   Particle(PVector _location, float _speed, float _radius){
-    location = _location;
+    location = new PVector();
+    location.set(_location);
     velocity = polarVector(random(0, TWO_PI), _speed);
     radius = _radius;
   }
