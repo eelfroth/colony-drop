@@ -27,7 +27,6 @@ void draw() {
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
     explosion.update(delta);
-    explosion.display(delta);
   }
   debugUI.update(delta);
   
@@ -35,10 +34,14 @@ void draw() {
   noStroke();
   rect(0, 0, width, height);
   
+   for(int i = 0; i < explosions.size(); ++i){
+    Explosion explosion = (Explosion) explosions.get(i);
+    explosion.display(delta);
+  }
   testFighter.display(delta);
   debugUI.display();
 }
 
 void mousePressed(){
-  explosions.add(new Explosion(new PVector(mouseY, mouseX), 40, 0.1 , 1, 15));
+  explosions.add(new Explosion(new PVector(mouseY, mouseX), 40, 0.1 , 0.2, 15));
 }
