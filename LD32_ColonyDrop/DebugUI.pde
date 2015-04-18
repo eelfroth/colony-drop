@@ -8,7 +8,7 @@ class DebugUI {
   
   DebugUI(float x, float y) {
     location = new PVector(x, y);
-    updateInterval = 1000;
+    updateInterval = 250;
     lastUpdate = -updateInterval;
     myString = "";
   }
@@ -20,9 +20,10 @@ class DebugUI {
       myString += "fR: " + float(round(frameRate*100))/100 + "\n";
       myString += "Δt: " + delta + "\n";
       
-      myString += "ship x: " + testFighter.location.x + "\n";
-      myString += "ship y: " + testFighter.location.y + "\n";
-      myString += "ship α: " + testFighter.rotation + "\n";
+      myString += "ship x: " +  float(round(testFighter.location.x * 100))/100 + "\n";
+      myString += "ship y: " +  float(round(testFighter.location.y * 100))/100 + "\n";
+      myString += "ship α: " +  float(round(testFighter.rotation * 100))/100 + "\n";
+      myString += "bullets: " + testFighter.bullets.size() + "\n";
       
       lastUpdate = millis();
     }
@@ -36,7 +37,7 @@ class DebugUI {
       //fill(0);
       noFill();
       stroke(#629D67);
-      rect(0, 0, 128, 15*5);
+      rect(0, 0, 128, 15*6);
       fill(#629D67);
       text(myString, 4, 14);
       
