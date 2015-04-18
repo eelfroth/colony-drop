@@ -1,15 +1,9 @@
 
-//constants
-final int BLOCK_SIZE = 32;
-
-//global variables
 int lastMillis;
 
-//pointer
 Fighter testFighter;
 ArrayList<Explosion> explosions;
 DebugUI debugUI;
-ArrayList<Block> spaceColony;
 
 void setup() {
   size(800, 600);  
@@ -62,15 +56,10 @@ void draw() {
   noStroke();
   rect(0, 0, width, height);
   
-  for(int i=0; i<spaceColony.size(); i++) {
-    Block b = spaceColony.get(i);
-    b.display();
-  }
-  
   testFighter.display(delta);
   debugUI.display();
 }
 
 void mousePressed(){
-  explosions.add(new Explosion(new PVector(width/2, height/2), 40, 2, 5, 5));
+  explosions.add(new Explosion(new PVector(mouseY, mouseX), 40, 0.1 , 1, 15));
 }
