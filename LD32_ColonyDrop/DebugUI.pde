@@ -37,7 +37,7 @@ class DebugUI {
       //fill(0);
       noFill();
       stroke(#629D67);
-      rect(0, 0, 80, 15*6);
+      rect(0, 0, 128, 15*6);
       fill(#629D67);
       text(myString, 4, 14);
       
