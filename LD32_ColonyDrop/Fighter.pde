@@ -38,13 +38,15 @@ class Fighter {
     if (key_right)
       rotation += rotationSpeed * delta;
     if(key_shoot)
-      bullets.add(new Bullet(location.x, location.y, rotation, 5));
+      bullets.add(new Bullet(location.x, location.y, rotation, random(0.5, 1)));
     //physics?
     
     //update bullets
     for(int i = 0; i < bullets.size(); ++i){
       Bullet bullet = (Bullet) bullets.get(i);
       bullet.update(delta);
+      if(bullet.r <= 0) 
+        bullets.remove(i);
     }
     
     //update vectors
