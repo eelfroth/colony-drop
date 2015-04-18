@@ -23,6 +23,7 @@ class DebugUI {
       myString += "ship x: " + testFighter.location.x + "\n";
       myString += "ship y: " + testFighter.location.y + "\n";
       myString += "ship α: " + testFighter.rotation + "\n";
+      myString += "bullets: " + testFighter.bullets.size() + "\n";
       
       lastUpdate = millis();
     }
@@ -36,7 +37,7 @@ class DebugUI {
       //fill(0);
       noFill();
       stroke(#629D67);
-      rect(0, 0, 128, 15*5);
+      rect(0, 0, 128, 15*6);
       fill(#629D67);
       text(myString, 4, 14);
       
