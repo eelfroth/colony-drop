@@ -73,7 +73,7 @@ void draw() {
   
   debugUI.update(delta);
   
-  fill(0, 2 * delta);
+  fill(0, 4 * delta);
   noStroke();
   rect(0, 0, width, height);
   

@@ -3,12 +3,14 @@ class Bullet{
   
   PVector location, velocity;
   float r;
-  int lifetime = 500;
+  int lifetime, maxLifetime;
   
-  Bullet(float x, float y, float rotation, float speed){
+  Bullet(float x, float y, float rotation, float speed, int range){
     location = new PVector(x, y);
     velocity = polarVector(rotation, speed);
-    r = 10;
+    r = 24;
+    maxLifetime = range;
+    lifetime = maxLifetime;
   }
   
   void update(int delta){
@@ -32,9 +34,9 @@ class Bullet{
         ellipse( 0,0, r, r);
         */
         //tint(random(0, 255), 0, 0, random(255));
-      noTint();
-      imageMode(CENTER);
-      image(shotImage, 0, 0, r*5, r*5);
+        tint(200, 128+sin(float(lifetime) / maxLifetime*0.5)*64, random(200));
+        imageMode(CENTER);
+        image(shotImage, 0, 0, r*2, r*2);
       popMatrix();
     }
    

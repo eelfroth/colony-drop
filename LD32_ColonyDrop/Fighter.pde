@@ -85,7 +85,7 @@ class Fighter {
         camera.translateToView();  
         translate(location.x, location.y);
         rotate(rotation);
-        
+        /*
         if (acceleration != 0.0) {
           
         fill(255, 100 + random(155), random(100), delta * random(20));
@@ -93,7 +93,7 @@ class Fighter {
         
         ellipse(-length/2 - 12, 0.0, 12 + random(28), 8 + random(8));
         }
-      /*
+      
         stroke(200);
         fill(0);
         strokeWeight(1);
@@ -104,8 +104,15 @@ class Fighter {
                 );
                 */
         imageMode(CENTER);
-        noTint();
-        image(fighterImage, 0, 0, 64, 64);  
+        
+        if (acceleration != 0.0) {
+          
+        tint(255, 100 + random(155), random(100), delta * random(20));
+        image(sparkImage, -length/2 - 12, 0.0, 12 + random(28), 8 + random(8));
+        }
+        //noTint();
+        tint(#BABCAF);
+        image(fighterImage, 0, 0);  
       popMatrix();
     }
   }

@@ -3,10 +3,10 @@ class Weapon{
   Fighter owner;
   PVector location;
   boolean loaded, reloading;
-  int magazineSize, burst, shotsLeft;
+  int magazineSize, burst, shotsLeft, range;
   float reloadTime, reloadTimer, bulletSpeed;
   
-  Weapon(Fighter _owner, int _magazineSize, int _burst, float _bulletSpeed, float _reloadTime){
+  Weapon(Fighter _owner, int _magazineSize, int _burst, float _bulletSpeed, float _reloadTime, int _range){
     owner        = _owner;
     location     = new PVector();
     location.set(owner.location);
@@ -16,6 +16,7 @@ class Weapon{
     reloadTimer  = 1;
     shotsLeft    = _magazineSize;
     bulletSpeed  = _bulletSpeed;
+    range        = _range;
     
     loaded    = true;
     reloading = false;
@@ -41,7 +42,7 @@ class Weapon{
     if(loaded && !reloading){
       for(int i=0; i < burst; ++i){
         if(shotsLeft > 0){
-          Bullet b = new Bullet(location.x, location.y, direction, bulletSpeed);
+          Bullet b = new Bullet(location.x, location.y, direction, bulletSpeed, range);
           b.velocity.add(owner.velocity);
           direction += 0.1; 
           bullets.add(b);
@@ -56,7 +57,7 @@ class Weapon{
 
 class StandardGun extends Weapon{
    StandardGun(Fighter _owner){
-     super(_owner, 1, 1, 0.5, 500);
+     super(_owner, 1, 1, 0.5, 200, 700);
    } 
    
    void improve(){
