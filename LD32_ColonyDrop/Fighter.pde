@@ -1,8 +1,8 @@
 
 
 class Fighter {
-  PVector location, velocity;
-  float rotation, acceleration;
+  PVector location, velocity, vAcc;
+  float rotation, acceleration, maxSpeed;
   float length, width, propulsion, rotationSpeed;
   ArrayList<Bullet> bullets;
   Weapon weapon;
@@ -10,13 +10,16 @@ class Fighter {
   Fighter(float x, float y) {
     
     location = new PVector(x, y);
-    velocity = new PVector();
+    velocity = new PVector(0.00000001, 0);
+    vAcc = new PVector();
     rotation = 0.0;
     
     //default values
     length = 32.0;
     width = 24.0;
-    propulsion = 0.0004;
+    propulsion = 0.001;
+    rotationSpeed = 0.008;
+    maxSpeed = 0.5;
     rotationSpeed = 0.01;
     
     bullets = new ArrayList<Bullet>();
@@ -54,7 +57,14 @@ class Fighter {
     }
     */
     //update vectors
-    velocity.add( PVector.mult(polarVector(rotation, acceleration), delta) );
+    if(acceleration == 0.0) 
+      velocity.mult(0.99);
+    else {
+      vAcc.set(polarVector(rotation, acceleration));
+      vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()))/2);
+      //vAcc.mult( maxSpeed-velocity.mag());
+      velocity.add( PVector.mult(vAcc, delta) );
+    }
     location.add( PVector.mult(velocity, delta) );
   }
   
@@ -93,8 +103,9 @@ class Fighter {
                  -length/2, -width/2
                 );
                 */
-                imageMode(CENTER);
-                image(fighterImage, 0, 0, 64, 64);  
+        imageMode(CENTER);
+        noTint();
+        image(fighterImage, 0, 0, 64, 64);  
       popMatrix();
     }
   }
