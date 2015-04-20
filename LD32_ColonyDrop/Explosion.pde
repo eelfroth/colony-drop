@@ -54,17 +54,19 @@ class Particle{
   }
   
   void display(int delta){
-     pushMatrix();
+     if ( camera.inView(location) ) {
+      pushMatrix();
+          
+        camera.translateToView();  
+        translate(location.x, location.y);
       
-      translate(location.x, location.y);
-    
-     // stroke(radius*15, radius*5, 0);
-     //noStroke();
-      tint(255, radius*15, 0, random(255));
-      strokeWeight(1);
-      image(particleImage, 0, 0, radius, radius);
-     // ellipse( 0,0, radius, radius);
-
-    popMatrix();
+        stroke(radius*15, radius*5, 0);
+        fill(255, 215, 0);
+        strokeWeight(1);
+        
+        ellipse( 0,0, radius, radius);
+  
+      popMatrix();
+     }
   }
 }

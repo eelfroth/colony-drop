@@ -9,7 +9,7 @@ Fighter testFighter;
 ArrayList<Block> spaceColony;
 ArrayList<Explosion> explosions;
 DebugUI debugUI;
-PImage particleImage;
+View camera;
 
 float counter = 50;
 
@@ -23,8 +23,6 @@ void setup() {
   debugUI = new DebugUI(8, 8);
   testFighter = new Fighter(width/2, height/2);
   explosions = new ArrayList<Explosion>();
-  
-  particleImage = loadImage("spark.png");
   
   spaceColony = new ArrayList<Block>();
   for(int x=0; x<width/BLOCK_SIZE; x++) {
@@ -47,12 +45,14 @@ void setup() {
     }
   }
   
+  camera = new View(0, 0, width, height);
+  
   lastMillis = millis();
 }
 void draw() {
  
   if(counter < 0){
-    explosions.add(new Explosion(testFighter.location, (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
+    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
     counter = random(0, 200);
   }else{
     counter--;
@@ -62,6 +62,8 @@ void draw() {
   lastMillis = millis();
   
   testFighter.update(delta);
+  camera.update(delta);
+  
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
     explosion.update(delta);

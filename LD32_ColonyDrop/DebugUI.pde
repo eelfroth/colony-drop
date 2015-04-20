@@ -41,8 +41,8 @@ class DebugUI {
       
       translate(location.x, location.y);
       
-      //fill(0);
-      noFill();
+      fill(0, 80);
+      //noFill();
       stroke(#629D67);
       rect(0, 0, 128, 15*7);
       fill(#629D67);

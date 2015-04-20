@@ -15,16 +15,19 @@ class Block {
   }
   
   void display() {
-    pushMatrix();
-    
-      translate(location.x, location.y);
+    if ( camera.inView(location, width, height) ) {
+      pushMatrix();
+        
+        camera.translateToView(); 
+        translate(location.x, location.y);
+        
+        stroke(cStroke);
+        fill(cFill);
+        
+        rect(0, 0, width, height);
       
-      stroke(cStroke);
-      fill(cFill);
-      
-      rect(0, 0, width, height);
-    
-    popMatrix();
+      popMatrix();
+    }
   }
   
 }
