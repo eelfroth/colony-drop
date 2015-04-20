@@ -43,3 +43,51 @@ class Bullet{
     // ellipse( location.x, location.y, r, r);
   }
 }
+
+class Rocket extends Bullet{
+  PVector acceleration;
+  boolean hasTarget;
+  PVector targetLocation;
+  int targetingTime;
+  float speed;
+  Rocket(float x, float y, float rotation, float speed){
+    super(x, y, rotation, speed);
+    targetLocation = new PVector(x, y);
+    hasTarget = false;
+    targetingTime = 500;
+  }
+  
+  void update(int delta){
+    if(!hasTarget){
+      location.add( PVector.mult(velocity, delta) );
+      targetingTime -= delta;
+    }else{
+      acceleration = PVector.sub(targetLocation, location);
+      acceleration.normalize();
+      velocity.add(PVector.mult(acceleration, delta));
+      if(velocity.mag() > speed)
+        velocity.normalize();
+      location.add( PVector.mult(velocity, delta) );   
+    }
+    
+    if(targetingTime <= 0){
+      findTarget();
+      targetingTime = 500;
+    }
+    
+  }
+  
+  void findTarget(){
+     Block target = spaceColony.get(0);
+     for(int i = 1; i < spaceColony.size(); ++i){
+       Block temp = (Block) spaceColony.get(i);
+       if(dist(location.x, location.y, target.location.x, target.location.y) > dist(location.x, location.y, temp.location.x, temp.location.y)){
+         target = temp;
+       }
+     }
+     targetLocation = target.location;
+     hasTarget = true;
+   }
+  
+  
+}
