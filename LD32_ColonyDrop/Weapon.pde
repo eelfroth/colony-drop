@@ -64,3 +64,26 @@ class StandardGun extends Weapon{
      magazineSize++;
    }
 }
+
+class RocketLauncher extends Weapon{
+   RocketLauncher(Fighter _owner){
+     super(_owner, 1, 1, 0.5, 500);
+   } 
+   
+   void shoot(float direction){
+    direction -= (burst/2)*0.1;
+    if(loaded && !reloading){
+      for(int i=0; i < burst; ++i){
+        if(shotsLeft > 0){
+          Bullet b = new Rocket(location.x, location.y, direction, bulletSpeed);
+          b.velocity.add(owner.velocity);
+          direction += 0.1; 
+          bullets.add(b);
+          shotsLeft--;
+        }
+      }
+    }
+   }
+   
+
+}
