@@ -58,11 +58,12 @@ class Particle{
       
       translate(location.x, location.y);
     
-      stroke(radius*15, radius*5, 0);
-      fill(255, 215, 0);
+     // stroke(radius*15, radius*5, 0);
+     //noStroke();
+      tint(255, radius*15, 0, random(255));
       strokeWeight(1);
-      
-      ellipse( 0,0, radius, radius);
+      image(particleImage, 0, 0, radius, radius);
+     // ellipse( 0,0, radius, radius);
 
     popMatrix();
   }
