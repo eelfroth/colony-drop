@@ -5,12 +5,13 @@ class Explosion{
    float particleMinSpeed, particleMaxSpeed, particleMaxRadius;  
    ArrayList<Particle> particles;
    
-   Explosion(PVector _location, int _particleCount, float _particleMinSpeed, float _particleMaxSpeed, float _particleMaxRadius){
+   Explosion(PVector _location, int _particleCount, float _particleMinSpeed, float _particleMaxSpeed, float _particleMaxRadius, float _spin){
      location = _location;
      particles = new ArrayList<Particle>();
      for(int i = 0; i < _particleCount; ++i){
-       float speed = random(_particleMinSpeed, particleMaxSpeed);
-       particles.add(new Particle(_location, speed , random(1, _particleMaxRadius)));
+       float speed = random(_particleMinSpeed, _particleMaxSpeed);
+       println(speed);
+       particles.add(new Particle(_location, speed , random(1, _particleMaxRadius), _spin));
      }
    }
    
@@ -35,16 +36,19 @@ class Explosion{
 
 class Particle{
   PVector location, velocity;
-  float radius;
+  float radius, spin;
   
-  Particle(PVector _location, float _speed, float _radius){
+  Particle(PVector _location, float _speed, float _radius, float _spin){
     location = new PVector();
     location.set(_location);
     velocity = polarVector(random(0, TWO_PI), _speed);
     radius = _radius;
+    spin = _spin;
   }
   
   void update(int delta){
+    velocity.rotate(random(-0.1, 0.1));
+    velocity.rotate(spin);
     location.add( PVector.mult(velocity, delta) );
     radius -= 0.01*delta;
   }
@@ -54,8 +58,8 @@ class Particle{
       
       translate(location.x, location.y);
     
-      stroke(random(100, 200));
-      fill(random(0, 50));
+      stroke(radius*15, radius*5, 0);
+      fill(255, 215, 0);
       strokeWeight(1);
       
       ellipse( 0,0, radius, radius);
