@@ -25,6 +25,7 @@ class View {
   
   void update(int delta) {
     location = testFighter.location;
+    offset.set(width/2 - testFighter.velocity.x * width/4, height/2 - testFighter.velocity.y * height/4, 0);
   }
   
   boolean inView(PVector v) {
