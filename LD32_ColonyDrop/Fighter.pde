@@ -23,8 +23,7 @@ class Fighter {
     rotationSpeed = 0.01;
     
     bullets = new ArrayList<Bullet>();
-   // weapon = new StandardGun(this);
-    weapon = new RocketLauncher(this);
+    weapon = new StandardGun(this);
     
   }
   
@@ -108,8 +107,8 @@ class Fighter {
         
         if (acceleration != 0.0) {
           
-        tint(255, 100 + random(155), random(100), delta * random(20));
-        image(sparkImage, -length/2 - 12, 0.0, 12 + random(28), 8 + random(8));
+        tint(255, 100 + random(155), random(50), delta * random(20));
+        image(sparkImage, -length/2 , 0.0, 10 + random(48), 8 + random(20));
         }
         //noTint();
         tint(#BABCAF);
