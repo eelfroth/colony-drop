@@ -10,7 +10,6 @@ class Explosion{
      particles = new ArrayList<Particle>();
      for(int i = 0; i < _particleCount; ++i){
        float speed = random(_particleMinSpeed, _particleMaxSpeed);
-       println(speed);
        particles.add(new Particle(_location, speed , random(1, _particleMaxRadius), _spin));
      }
    }
@@ -37,6 +36,7 @@ class Explosion{
 class Particle{
   PVector location, velocity;
   float radius, spin;
+  float gColor = 215;
   
   Particle(PVector _location, float _speed, float _radius, float _spin){
     location = new PVector();
@@ -51,6 +51,8 @@ class Particle{
     velocity.rotate(spin);
     location.add( PVector.mult(velocity, delta) );
     radius -= 0.01*delta;
+    if(gColor >= 0)
+      gColor -= 1;
   }
   
   void display(int delta){
@@ -59,12 +61,11 @@ class Particle{
           
         camera.translateToView();  
         translate(location.x, location.y);
-      
-        stroke(radius*15, radius*5, 0);
-        fill(255, 215, 0);
+        
+        tint(255, gColor, 0, random(255));
         strokeWeight(1);
         
-        ellipse( 0,0, radius, radius);
+        image(sparkImage, 0,0, radius, radius);
   
       popMatrix();
      }

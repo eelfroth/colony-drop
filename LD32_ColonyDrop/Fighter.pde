@@ -5,6 +5,7 @@ class Fighter {
   float rotation, acceleration, maxSpeed;
   float length, width, propulsion, rotationSpeed;
   ArrayList<Bullet> bullets;
+  Weapon weapon;
   
   Fighter(float x, float y) {
     
@@ -20,6 +21,7 @@ class Fighter {
     maxSpeed = 0.5;
     
     bullets = new ArrayList<Bullet>();
+    weapon = new Weapon(this, 5, 5, 0.5, 500);
     
   }
   
@@ -28,7 +30,7 @@ class Fighter {
       evaluate inputs/ai etc
       --> changes rotation & propulsion (=acceleration vector)
     */
-    
+    weapon.update(location, delta);
     if (key_thrust) 
       acceleration = propulsion;
     else
@@ -39,17 +41,19 @@ class Fighter {
     if (key_right)
       rotation += rotationSpeed * delta;
     if(key_shoot)
-      bullets.add(new Bullet(location.x, location.y, rotation, random(0.5, 1)));
+      weapon.shoot(rotation);
+      //bullets.add(new Bullet(location.x, location.y, rotation, mag(velocity.x, velocity.y) + 0.5));
     //physics?
     
     //update bullets
+    /*
     for(int i = 0; i < bullets.size(); ++i){
       Bullet bullet = (Bullet) bullets.get(i);
       bullet.update(delta);
       if(bullet.r <= 0) 
         bullets.remove(i);
     }
-    
+    */
     //update vectors
     
     if(acceleration == 0.0) 
@@ -67,10 +71,12 @@ class Fighter {
     /*
       placeholder triangle
     */
+    /*
     for(int i = 0; i < bullets.size(); ++i){
       Bullet bullet = (Bullet) bullets.get(i);
       bullet.display(delta);
     }
+    */
   
     if ( camera.inView(location) ) {
       pushMatrix();

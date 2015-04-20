@@ -8,6 +8,8 @@ int lastMillis;
 Fighter testFighter;
 ArrayList<Block> spaceColony;
 ArrayList<Explosion> explosions;
+ArrayList<Bullet> bullets;
+PImage sparkImage;
 DebugUI debugUI;
 View camera;
 
@@ -23,7 +25,8 @@ void setup() {
   debugUI = new DebugUI(8, 8);
   testFighter = new Fighter(width/2, height/2);
   explosions = new ArrayList<Explosion>();
-  
+  bullets    = new ArrayList<Bullet>();
+  sparkImage = loadImage("spark.png");
   spaceColony = new ArrayList<Block>();
   for(int x=0; x<width/BLOCK_SIZE; x++) {
     for(int y=0; y<height/BLOCK_SIZE; y++) {
@@ -64,13 +67,6 @@ void draw() {
   testFighter.update(delta);
   camera.update(delta);
   
-  for(int i = 0; i < explosions.size(); ++i){
-    Explosion explosion = (Explosion) explosions.get(i);
-    explosion.update(delta);
-    if(explosion.particles.size() < 1) {
-      explosions.remove(i--);
-    }
-  }
   debugUI.update(delta);
   
   fill(0, 2 * delta);
@@ -83,10 +79,22 @@ void draw() {
     Block b = spaceColony.get(i);
     b.display();
   }
-    for(int i = 0; i < explosions.size(); ++i){
+  for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
+    explosion.update(delta);
     explosion.display(delta);
-   }
+    if(explosion.particles.size() < 1) {
+      explosions.remove(i--);
+    }
+  }
+  for(int i = 0; i < bullets.size(); ++i){
+    Bullet bullet = (Bullet) bullets.get(i);
+    bullet.update(delta);
+    bullet.display(delta);
+    if(bullet.lifetime <= 0) 
+        bullets.remove(i);
+  }
+  
   testFighter.display(delta);
   debugUI.display();
 }
