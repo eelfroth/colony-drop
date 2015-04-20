@@ -17,17 +17,21 @@ class Bullet{
   
   void display(int delta){
    
-    pushMatrix();
+    if ( camera.inView(location) ) {
+      pushMatrix();
+          
+        camera.translateToView();  
       
-      translate(location.x, location.y);
-    
-      stroke(200);
-      fill(0);
-      strokeWeight(1);
+        translate(location.x, location.y);
       
-      ellipse( 0,0, r, r);
-
-    popMatrix();
+        stroke(200);
+        fill(0);
+        strokeWeight(1);
+        
+        ellipse( 0,0, r, r);
+  
+      popMatrix();
+    }
    
     // ellipse( location.x, location.y, r, r);
   }

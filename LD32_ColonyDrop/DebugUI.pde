@@ -8,7 +8,7 @@ class DebugUI {
   
   DebugUI(float x, float y) {
     location = new PVector(x, y);
-    updateInterval = 250;
+    updateInterval = 500;
     lastUpdate = -updateInterval;
     myString = "";
   }
@@ -25,6 +25,13 @@ class DebugUI {
       myString += "ship α: " +  float(round(testFighter.rotation * 100))/100 + "\n";
       myString += "bullets: " + testFighter.bullets.size() + "\n";
       
+      int particles = 0;
+      for(Explosion e : explosions) {
+        particles += e.particles.size();
+      }
+      
+      myString += "particles: " + particles + "\n";
+      
       lastUpdate = millis();
     }
   }
@@ -34,10 +41,10 @@ class DebugUI {
       
       translate(location.x, location.y);
       
-      //fill(0);
-      noFill();
+      fill(0, 80);
+      //noFill();
       stroke(#629D67);
-      rect(0, 0, 128, 15*6);
+      rect(0, 0, 128, 15*7);
       fill(#629D67);
       text(myString, 4, 14);
       

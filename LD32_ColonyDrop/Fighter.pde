@@ -69,28 +69,31 @@ class Fighter {
     }
     */
   
-    pushMatrix();
+    if ( camera.inView(location) ) {
+      pushMatrix();
+          
+        camera.translateToView();  
+        translate(location.x, location.y);
+        rotate(rotation);
         
-      translate(location.x, location.y);
-      rotate(rotation);
+        if (acceleration != 0.0) {
+        fill(255, 100 + random(155), random(100), delta * random(20));
+        noStroke();
+        
+        ellipse(-length/2 - 12, 0.0, 12 + random(28), 8 + random(8));
+        }
       
-      if (acceleration != 0.0) {
-      fill(255, 100 + random(155), random(100), delta * random(20));
-      noStroke();
-      
-      ellipse(-length/2 - 12, 0.0, 12 + random(28), 8 + random(8));
-      }
-    
-      stroke(200);
-      fill(0);
-      strokeWeight(1);
-      
-      triangle( length/2,  0.0    ,
-               -length/2,  width/2, 
-               -length/2, -width/2
-              );
-
-    popMatrix();
+        stroke(200);
+        fill(0);
+        strokeWeight(1);
+        
+        triangle( length/2,  0.0    ,
+                 -length/2,  width/2, 
+                 -length/2, -width/2
+                );
+  
+      popMatrix();
+    }
   }
   
   
