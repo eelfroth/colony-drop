@@ -42,6 +42,8 @@ class Bullet{
    
     // ellipse( location.x, location.y, r, r);
   }
+  
+  void onDeath(){};
 }
 
 class Rocket extends Bullet{
@@ -50,12 +52,13 @@ class Rocket extends Bullet{
   PVector targetLocation;
   int targetingTime;
   float speed, propulsion;
-  Rocket(float x, float y, float rotation, float speed){
+  Rocket(float x, float y, float rotation, float speed, int range){
     super(x, y, rotation, speed, 1);
     targetLocation = new PVector(x, y);
     hasTarget = false;
     targetingTime = 500;
     propulsion = 0.008;
+    lifetime = range;
   }
   
   void update(int delta){
@@ -78,6 +81,7 @@ class Rocket extends Bullet{
       findTarget();
       targetingTime = 500;
     }
+    lifetime -= delta;
     
   }
   
@@ -133,6 +137,10 @@ class Rocket extends Bullet{
       popMatrix();
     }
   }
+
+   void onDeath(){
+     explosions.add(new Explosion(location, (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
+   }
   
   
 }

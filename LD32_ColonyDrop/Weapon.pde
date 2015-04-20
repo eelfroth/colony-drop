@@ -68,7 +68,7 @@ class StandardGun extends Weapon{
 
 class RocketLauncher extends Weapon{
    RocketLauncher(Fighter _owner){
-     super(_owner, 1, 1, 0.5, 500, 1000);
+     super(_owner, 1, 1, 0.5, 500, 4000);
    } 
    
    void shoot(float direction){
@@ -76,7 +76,7 @@ class RocketLauncher extends Weapon{
     if(loaded && !reloading){
       for(int i=0; i < burst; ++i){
         if(shotsLeft > 0){
-          Bullet b = new Rocket(location.x, location.y, direction, bulletSpeed);
+          Bullet b = new Rocket(location.x, location.y, direction, bulletSpeed, range);
           b.velocity.add(owner.velocity);
           direction += 0.1; 
           bullets.add(b);
