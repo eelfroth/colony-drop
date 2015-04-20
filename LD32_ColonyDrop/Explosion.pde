@@ -10,7 +10,6 @@ class Explosion{
      particles = new ArrayList<Particle>();
      for(int i = 0; i < _particleCount; ++i){
        float speed = random(_particleMinSpeed, _particleMaxSpeed);
-       println(speed);
        particles.add(new Particle(_location, speed , random(1, _particleMaxRadius), _spin));
      }
    }
