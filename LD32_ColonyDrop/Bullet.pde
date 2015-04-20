@@ -3,6 +3,7 @@ class Bullet{
   
   PVector location, velocity;
   float r;
+  int lifetime = 500;
   
   Bullet(float x, float y, float rotation, float speed){
     location = new PVector(x, y);
@@ -12,7 +13,7 @@ class Bullet{
   
   void update(int delta){
     location.add( PVector.mult(velocity, delta) );
-    r -= 0.02*delta;
+    lifetime -= delta;
   }
   
   void display(int delta){

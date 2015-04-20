@@ -66,20 +66,6 @@ void draw() {
   testFighter.update(delta);
   camera.update(delta);
   
-  for(int i = 0; i < explosions.size(); ++i){
-    Explosion explosion = (Explosion) explosions.get(i);
-    explosion.update(delta);
-    if(explosion.particles.size() < 1) {
-      explosions.remove(i--);
-    }
-  }
-  for(int i = 0; i < bullets.size(); ++i){
-    Bullet bullet = (Bullet) bullets.get(i);
-    bullet.update(delta);
-    bullet.display(delta);
-    if(bullet.r <= 0) 
-        bullets.remove(i);
-  }
   debugUI.update(delta);
   
   fill(0, 2 * delta);
@@ -92,10 +78,22 @@ void draw() {
     Block b = spaceColony.get(i);
     b.display();
   }
-    for(int i = 0; i < explosions.size(); ++i){
+  for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
+    explosion.update(delta);
     explosion.display(delta);
-   }
+    if(explosion.particles.size() < 1) {
+      explosions.remove(i--);
+    }
+  }
+  for(int i = 0; i < bullets.size(); ++i){
+    Bullet bullet = (Bullet) bullets.get(i);
+    bullet.update(delta);
+    bullet.display(delta);
+    if(bullet.lifetime <= 0) 
+        bullets.remove(i);
+  }
+  
   testFighter.display(delta);
   debugUI.display();
 }
