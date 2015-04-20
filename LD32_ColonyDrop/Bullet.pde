@@ -32,6 +32,7 @@ class Bullet{
         ellipse( 0,0, r, r);
         */
         //tint(random(0, 255), 0, 0, random(255));
+        imageMode(CENTER);
         image(shotImage, 0, 0, r*5, r*5);
       popMatrix();
     }
