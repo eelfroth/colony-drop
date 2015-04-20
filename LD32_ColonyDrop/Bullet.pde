@@ -86,7 +86,7 @@ class Rocket extends Bullet{
   }
   
   void findTarget(){
-     Block target = spaceColony.get(0);
+    /* Block target = spaceColony.get(0);
      for(int i = 1; i < spaceColony.size(); ++i){
        Block temp = (Block) spaceColony.get(i);
        if(dist(location.x, location.y, target.location.x, target.location.y) > dist(location.x, location.y, temp.location.x, temp.location.y)){
@@ -94,19 +94,10 @@ class Rocket extends Bullet{
        }
      }
      targetLocation = target.location;
-     hasTarget = true;
+     hasTarget = true;*/
    }
    
   void display(int delta) {
-    /*
-      placeholder triangle
-    */
-    /*
-    for(int i = 0; i < bullets.size(); ++i){
-      Bullet bullet = (Bullet) bullets.get(i);
-      bullet.display(delta);
-    }
-    */
     
     if ( camera.inView(location) ) {
       pushMatrix();

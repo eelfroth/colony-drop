@@ -7,7 +7,7 @@ float counter = 50;
 
 //global pointers
 Fighter testFighter;
-ArrayList<Block> spaceColony;
+Block[][] spaceColony;
 ArrayList<Explosion> explosions;
 ArrayList<Bullet> bullets;
 DebugUI debugUI;
@@ -37,23 +37,20 @@ void setup() {
   fighterImage = loadImage("fighter.png");
   rocketImage = loadImage("rocket.png");
   
-  spaceColony = new ArrayList<Block>();
-  for(int x=0; x<width/BLOCK_SIZE; x++) {
-    for(int y=0; y<height/BLOCK_SIZE; y++) {
+  spaceColony = new Block[width/BLOCK_SIZE][height/BLOCK_SIZE];
+  for(int x=0; x<spaceColony.length; x++) {
+    for(int y=0; y<spaceColony[0].length; y++) {
       float dist = dist(x, y, width/BLOCK_SIZE/2, height/BLOCK_SIZE/2);
       if ( dist < 7 && dist > 6) {
-        Block b = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
-        spaceColony.add( b );
-        b.cFill = #2C3E43;
+        spaceColony[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
+        spaceColony[x][y].cFill = #2C3E43;
       }
       else if ( dist < 6 && dist > 5) {
-        Block b = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
-        spaceColony.add( b );
+        spaceColony[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
       }
       else if ( dist < 5.1 && dist > 4) {
-        Block b = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
-        spaceColony.add( b );
-        b.cFill = #1A2027;
+        spaceColony[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
+        spaceColony[x][y].cFill = #1A2027;
       }
     }
   }
@@ -85,9 +82,11 @@ void draw() {
   
  
     
-  for(int i=0; i<spaceColony.size(); i++) {
-    Block b = spaceColony.get(i);
-    b.display();
+  for(int x=0; x<spaceColony.length; x++) {
+    for(int y=0; y<spaceColony[0].length; y++) {
+      if(spaceColony[x][y] != null) 
+        spaceColony[x][y].display();
+    }
   }
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
