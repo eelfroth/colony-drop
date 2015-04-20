@@ -37,9 +37,11 @@ class Weapon{
   }
   
   void shoot(float direction){
+    direction -= (burst/2)*0.2;
     if(loaded && !reloading){
       for(int i=0; i < burst; ++i){
         if(shotsLeft > 0){
+          direction += 0.2; 
           Bullet b = new Bullet(location.x, location.y, direction, bulletSpeed);
           b.velocity.add(owner.velocity);
           bullets.add(b);
