@@ -10,6 +10,8 @@ ArrayList<Block> spaceColony;
 ArrayList<Explosion> explosions;
 ArrayList<Bullet> bullets;
 PImage sparkImage;
+PImage shotImage;
+PImage fighterImage;
 DebugUI debugUI;
 View camera;
 
@@ -27,6 +29,8 @@ void setup() {
   explosions = new ArrayList<Explosion>();
   bullets    = new ArrayList<Bullet>();
   sparkImage = loadImage("spark.png");
+  shotImage  = loadImage("shot.png");
+  fighterImage = loadImage("fighter.png");
   spaceColony = new ArrayList<Block>();
   for(int x=0; x<width/BLOCK_SIZE; x++) {
     for(int y=0; y<height/BLOCK_SIZE; y++) {

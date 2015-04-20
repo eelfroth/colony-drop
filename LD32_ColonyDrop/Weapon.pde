@@ -50,5 +50,17 @@ class Weapon{
       }
     }
   }
+  
+  void improve(){};
+}
+
+class StandardGun extends Weapon{
+   StandardGun(Fighter _owner){
+     super(_owner, 1, 1, 0.5, 500);
+   } 
    
+   void improve(){
+     burst++;
+     magazineSize++;
+   }
 }

@@ -24,13 +24,15 @@ class Bullet{
         camera.translateToView();  
       
         translate(location.x, location.y);
-      
+        /*
         stroke(200);
         fill(0);
         strokeWeight(1);
         
         ellipse( 0,0, r, r);
-  
+        */
+        //tint(random(0, 255), 0, 0, random(255));
+        image(shotImage, 0, 0, r*5, r*5);
       popMatrix();
     }
    
