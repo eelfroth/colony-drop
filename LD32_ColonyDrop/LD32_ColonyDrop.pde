@@ -65,7 +65,7 @@ void setup() {
 void draw() {
  
   if(counter < 0){
-    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
+    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(40, 800), 0.01 , 0.05, 30, random(-0.03, 0.03), 215));
     counter = random(0, 200);
   }else{
     counter--;
@@ -111,6 +111,3 @@ void draw() {
   debugUI.display();
 }
 
-void mousePressed(){
-  explosions.add(new Explosion(new PVector(mouseY, mouseX), (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
-}

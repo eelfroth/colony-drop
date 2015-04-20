@@ -139,7 +139,8 @@ class Rocket extends Bullet{
   }
 
    void onDeath(){
-     explosions.add(new Explosion(location, (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
+     explosions.add(new Explosion(location, (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03), 180));
+     explosions.add(new Explosion(location, (int)random(40, 800), 0.01 , 0.03, 30, random(-0.03, 0.03), 255));
    }
   
   
