@@ -23,6 +23,8 @@ class DebugUI {
       myString += "ship x: " +  float(round(testFighter.location.x * 100))/100 + "\n";
       myString += "ship y: " +  float(round(testFighter.location.y * 100))/100 + "\n";
       myString += "ship α: " +  float(round(testFighter.rotation * 100))/100 + "\n";
+      myString += "shp vlcty: " +  float(round(testFighter.velocity.mag() * 100))/100 + "\n";
+      
       myString += "bullets: " + bullets.size() + "\n";
       
       int particles = 0;
@@ -44,7 +46,7 @@ class DebugUI {
       fill(0, 80);
       //noFill();
       stroke(#629D67);
-      rect(0, 0, 128, 15*7);
+      rect(0, 0, 128, 15*8);
       fill(#629D67);
       text(myString, 4, 14);
       
