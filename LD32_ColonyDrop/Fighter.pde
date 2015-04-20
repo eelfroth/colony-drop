@@ -23,7 +23,7 @@ class Fighter {
     rotationSpeed = 0.01;
     
     bullets = new ArrayList<Bullet>();
-    weapon = new StandardGun(this);
+    weapon = new RocketLauncher(this);
     
   }
   

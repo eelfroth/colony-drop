@@ -49,12 +49,13 @@ class Rocket extends Bullet{
   boolean hasTarget;
   PVector targetLocation;
   int targetingTime;
-  float speed;
+  float speed, propulsion;
   Rocket(float x, float y, float rotation, float speed){
-    super(x, y, rotation, speed);
+    super(x, y, rotation, speed, 1);
     targetLocation = new PVector(x, y);
     hasTarget = false;
     targetingTime = 500;
+    propulsion = 0.008;
   }
   
   void update(int delta){
@@ -64,9 +65,12 @@ class Rocket extends Bullet{
     }else{
       acceleration = PVector.sub(targetLocation, location);
       acceleration.normalize();
+      acceleration.mult(propulsion);
+      
+      acceleration.mult( ((PVector.angleBetween(acceleration, velocity) / HALF_PI) +(speed-velocity.mag()))/2);
       velocity.add(PVector.mult(acceleration, delta));
-      if(velocity.mag() > speed)
-        velocity.normalize();
+      /*if(velocity.mag() > speed)
+        velocity.normalize(); */
       location.add( PVector.mult(velocity, delta) );   
     }
     
@@ -88,6 +92,47 @@ class Rocket extends Bullet{
      targetLocation = target.location;
      hasTarget = true;
    }
+   
+  void display(int delta) {
+    /*
+      placeholder triangle
+    */
+    /*
+    for(int i = 0; i < bullets.size(); ++i){
+      Bullet bullet = (Bullet) bullets.get(i);
+      bullet.display(delta);
+    }
+    */
+    
+    if ( camera.inView(location) ) {
+      pushMatrix();
+          
+        camera.translateToView();  
+        translate(location.x, location.y);
+        
+        if (velocity.x > 0 && velocity.y > 0) 
+          rotate( acos(velocity.x / velocity.mag()) );
+        else if (velocity.x < 0 && velocity.y > 0) 
+          rotate( acos(-velocity.x / -velocity.mag()) );
+        else if (velocity.x > 0 && velocity.y < 0) 
+          rotate( asin(velocity.y / velocity.mag()) );
+        else if (velocity.x < 0 && velocity.y < 0) 
+          rotate(PI + asin(-velocity.y / velocity.mag()) );
+    
+        imageMode(CENTER);
+        
+        if (hasTarget) {
+          
+          tint(255, 100 + random(155), random(50), delta * random(20));
+          image(sparkImage, -r , 0.0, 10 + random(48), 8 + random(20));
+        }
+        //noTint();
+        //tint(128, 100 + sin(float(millis()) / 50) * 50, 100 + sin(float(millis()) / 50) * 50);
+        tint(#E0CCCC);
+        image(rocketImage, 0, 0);  
+      popMatrix();
+    }
+  }
   
   
 }
