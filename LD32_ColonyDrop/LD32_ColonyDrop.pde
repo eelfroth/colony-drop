@@ -8,6 +8,7 @@ int lastMillis;
 Fighter testFighter;
 ArrayList<Block> spaceColony;
 ArrayList<Explosion> explosions;
+ArrayList<Bullet> bullets;
 DebugUI debugUI;
 PImage particleImage;
 
@@ -23,6 +24,7 @@ void setup() {
   debugUI = new DebugUI(8, 8);
   testFighter = new Fighter(width/2, height/2);
   explosions = new ArrayList<Explosion>();
+  bullets    = new ArrayList<Bullet>();
   
   particleImage = loadImage("spark.png");
   
@@ -65,6 +67,13 @@ void draw() {
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
     explosion.update(delta);
+  }
+  for(int i = 0; i < bullets.size(); ++i){
+    Bullet bullet = (Bullet) bullets.get(i);
+    bullet.update(delta);
+    bullet.display(delta);
+    if(bullet.r <= 0) 
+        bullets.remove(i);
   }
   debugUI.update(delta);
   
