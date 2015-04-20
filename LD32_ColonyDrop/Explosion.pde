@@ -5,12 +5,12 @@ class Explosion{
    float particleMinSpeed, particleMaxSpeed, particleMaxRadius;  
    ArrayList<Particle> particles;
    
-   Explosion(PVector _location, int _particleCount, float _particleMinSpeed, float _particleMaxSpeed, float _particleMaxRadius, float _spin){
+   Explosion(PVector _location, int _particleCount, float _particleMinSpeed, float _particleMaxSpeed, float _particleMaxRadius, float _spin, float gColorStart){
      location = _location;
      particles = new ArrayList<Particle>();
      for(int i = 0; i < _particleCount; ++i){
        float speed = random(_particleMinSpeed, _particleMaxSpeed);
-       particles.add(new Particle(_location, speed , random(1, _particleMaxRadius), _spin));
+       particles.add(new Particle(_location, speed , random(1, _particleMaxRadius), _spin, gColorStart));
      }
    }
    
@@ -36,14 +36,15 @@ class Explosion{
 class Particle{
   PVector location, velocity;
   float radius, spin;
-  float gColor = 215;
+  float gColor;
   
-  Particle(PVector _location, float _speed, float _radius, float _spin){
+  Particle(PVector _location, float _speed, float _radius, float _spin, float _gColorStart){
     location = new PVector();
     location.set(_location);
     velocity = polarVector(random(0, TWO_PI), _speed);
     radius = _radius;
     spin = _spin;
+    gColor = _gColorStart;
   }
   
   void update(int delta){
