@@ -95,8 +95,10 @@ void draw() {
     Bullet bullet = (Bullet) bullets.get(i);
     bullet.update(delta);
     bullet.display(delta);
-    if(bullet.lifetime <= 0) 
+    if(bullet.lifetime <= 0){ 
+        bullet.onDeath();
         bullets.remove(i);
+    }
   }
   
   testFighter.display(delta);
