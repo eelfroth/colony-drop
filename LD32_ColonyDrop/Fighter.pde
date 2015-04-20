@@ -11,6 +11,7 @@ class Fighter {
     
     location = new PVector(x, y);
     velocity = new PVector(0.00000001, 0);
+    vAcc = new PVector();
     rotation = 0.0;
     
     //default values
