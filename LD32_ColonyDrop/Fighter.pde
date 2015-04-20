@@ -20,7 +20,7 @@ class Fighter {
     rotationSpeed = 0.01;
     
     bullets = new ArrayList<Bullet>();
-    weapon = new Weapon(location, 1, 1, 1, 230);
+    weapon = new Weapon(this, 30, 1, 0.5, 200);
     
   }
   

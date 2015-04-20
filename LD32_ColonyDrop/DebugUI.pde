@@ -23,7 +23,7 @@ class DebugUI {
       myString += "ship x: " +  float(round(testFighter.location.x * 100))/100 + "\n";
       myString += "ship y: " +  float(round(testFighter.location.y * 100))/100 + "\n";
       myString += "ship α: " +  float(round(testFighter.rotation * 100))/100 + "\n";
-      myString += "bullets: " + testFighter.bullets.size() + "\n";
+      myString += "bullets: " + bullets.size() + "\n";
       
       int particles = 0;
       for(Explosion e : explosions) {
