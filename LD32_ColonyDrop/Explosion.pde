@@ -9,8 +9,8 @@ class Explosion{
      location = _location;
      particles = new ArrayList<Particle>();
      for(int i = 0; i < _particleCount; ++i){
-       float direction = random(0, TWO_PI);
-       particles.add(new Particle(_location, random(_particleMinSpeed, particleMaxSpeed), random(1, _particleMaxRadius)));
+       float speed = random(_particleMinSpeed, particleMaxSpeed);
+       particles.add(new Particle(_location, speed , random(1, _particleMaxRadius)));
      }
    }
    
@@ -54,8 +54,8 @@ class Particle{
       
       translate(location.x, location.y);
     
-      stroke(200);
-      fill(0);
+      stroke(random(100, 200));
+      fill(random(0, 50));
       strokeWeight(1);
       
       ellipse( 0,0, radius, radius);

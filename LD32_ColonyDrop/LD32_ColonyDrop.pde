@@ -46,6 +46,8 @@ void setup() {
 }
 
 void draw() {
+ 
+  
   int delta = millis() - lastMillis;
   lastMillis = millis();
   
@@ -75,5 +77,5 @@ void draw() {
 }
 
 void mousePressed(){
-  explosions.add(new Explosion(new PVector(mouseY, mouseX), 40, 0.1 , 0.2, 15));
+  explosions.add(new Explosion(new PVector(mouseY, mouseX), (int)random(40, 80), 0.1 , 2, 15));
 }
