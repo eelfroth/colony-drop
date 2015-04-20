@@ -4,10 +4,11 @@ final int BLOCK_SIZE = 32;
 //global variables
 int lastMillis;
 float counter = 50;
+int currentDepth = 0;
 
 //global pointers
 Fighter testFighter;
-Block[][] spaceColony;
+SpaceColony colony;
 ArrayList<Explosion> explosions;
 ArrayList<Bullet> bullets;
 DebugUI debugUI;
@@ -36,38 +37,22 @@ void setup() {
   shotImage  = loadImage("shot.png");
   fighterImage = loadImage("fighter.png");
   rocketImage = loadImage("rocket.png");
-  
-  spaceColony = new Block[width/BLOCK_SIZE][height/BLOCK_SIZE];
-  for(int x=0; x<spaceColony.length; x++) {
-    for(int y=0; y<spaceColony[0].length; y++) {
-      float dist = dist(x, y, width/BLOCK_SIZE/2, height/BLOCK_SIZE/2);
-      if ( dist < 7 && dist > 6) {
-        spaceColony[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
-        spaceColony[x][y].cFill = #2C3E43;
-      }
-      else if ( dist < 6 && dist > 5) {
-        spaceColony[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
-      }
-      else if ( dist < 5.1 && dist > 4) {
-        spaceColony[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
-        spaceColony[x][y].cFill = #1A2027;
-      }
-    }
-  }
+  //    colony dimensions:  w   h   d
+  colony = new SpaceColony(20, 20, 10);
   
   camera = new View(0, 0, width, height);
   
   lastMillis = millis();
 }
 void draw() {
- 
+ /*
   if(counter < 0){
-    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(40, 800), 0.01 , 0.05, 30, random(-0.03, 0.03), 215));
+    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(10, 60), 0.08 , 0.1, 60, random(-0.03, 0.03), 215));
     counter = random(0, 200);
   }else{
     counter--;
   }
-  
+  */
   int delta = millis() - lastMillis;
   lastMillis = millis();
   
@@ -80,14 +65,8 @@ void draw() {
   noStroke();
   rect(0, 0, width, height);
   
- 
-    
-  for(int x=0; x<spaceColony.length; x++) {
-    for(int y=0; y<spaceColony[0].length; y++) {
-      if(spaceColony[x][y] != null) 
-        spaceColony[x][y].display();
-    }
-  }
+  colony.display(delta, currentDepth);
+
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
     explosion.update(delta);
@@ -102,7 +81,7 @@ void draw() {
     bullet.display(delta);
     if(bullet.lifetime <= 0){ 
         bullet.onDeath();
-        bullets.remove(i);
+        bullets.remove(i--);
     }
   }
   

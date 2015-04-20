@@ -19,8 +19,7 @@ class Explosion{
       Particle particle = (Particle) particles.get(i);
       particle.update(delta);
       if(particle.radius <= 0) { 
-        particles.remove(i);
-        i--;
+        particles.remove(i--);
       }
     }
   }

@@ -84,7 +84,5 @@ class RocketLauncher extends Weapon{
         }
       }
     }
-   }
-   
-
+  }
 }

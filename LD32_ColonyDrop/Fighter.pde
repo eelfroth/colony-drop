@@ -24,6 +24,7 @@ class Fighter {
     
     bullets = new ArrayList<Bullet>();
     weapon = new StandardGun(this);
+    weapon = new RocketLauncher(this);
     
   }
   
@@ -53,7 +54,7 @@ class Fighter {
       Bullet bullet = (Bullet) bullets.get(i);
       bullet.update(delta);
       if(bullet.r <= 0) 
-        bullets.remove(i);
+        bullets.remove(i--);
     }
     */
     //update vectors

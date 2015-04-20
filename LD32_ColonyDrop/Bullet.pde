@@ -1,4 +1,3 @@
-
 class Bullet{
   
   PVector location, velocity;
@@ -51,12 +50,12 @@ class Bullet{
 class Rocket extends Bullet{
   PVector acceleration;
   boolean hasTarget;
-  PVector targetLocation;
+  Block target;
   int targetingTime;
   float speed, propulsion;
   Rocket(float x, float y, float rotation, float speed, int range){
     super(x, y, rotation, speed, 1);
-    targetLocation = new PVector(x, y);
+    target = null;
     hasTarget = false;
     targetingTime = 500;
     propulsion = 0.008;
@@ -68,7 +67,8 @@ class Rocket extends Bullet{
       location.add( PVector.mult(velocity, delta) );
       targetingTime -= delta;
     }else{
-      acceleration = PVector.sub(targetLocation, location);
+      //println(target);
+      acceleration = PVector.sub(target.location, location);
       acceleration.normalize();
       acceleration.mult(propulsion);
       
@@ -88,17 +88,24 @@ class Rocket extends Bullet{
   }
   
   void findTarget(){
-     Block target = spaceColony.get(0);
-     for(int i = 1; i < spaceColony.size(); ++i){
-       Block temp = (Block) spaceColony.get(i);
-       if(dist(location.x, location.y, target.location.x, target.location.y) > dist(location.x, location.y, temp.location.x, temp.location.y)){
-         target = temp;
+     for(int x = 0; x < colony.w; ++x){
+       for(int y = 0; y < colony.h; ++y){
+         Block temp = (Block) colony.layers.get(currentDepth)[x][y];
+         //println(temp);
+         if(temp != null && target != null){
+           if(dist(location.x, location.y, target.location.x, target.location.y) > dist(location.x, location.y, temp.location.x, temp.location.y)){
+             target = temp;
+           }
+         }
+         if(temp != null && target == null){
+           target = temp;
+         }
        }
      }
-     targetLocation = target.location;
+     println(target);
      hasTarget = true;
    }
-   
+ 
   void display(int delta) {
     /*
       placeholder triangle
