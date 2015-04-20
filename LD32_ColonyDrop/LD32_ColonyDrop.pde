@@ -10,6 +10,8 @@ ArrayList<Block> spaceColony;
 ArrayList<Explosion> explosions;
 DebugUI debugUI;
 
+float counter = 50;
+
 void setup() {
   size(800, 600);  
   frameRate(-1);
@@ -44,8 +46,15 @@ void setup() {
   
   lastMillis = millis();
 }
-
 void draw() {
+ 
+  if(counter < 0){
+    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
+    counter = random(0, 200);
+  }else{
+    counter--;
+  }
+  
   int delta = millis() - lastMillis;
   lastMillis = millis();
   
@@ -78,5 +87,5 @@ void draw() {
 }
 
 void mousePressed(){
-  explosions.add(new Explosion(new PVector(mouseY, mouseX), 40, 0.1 , 0.2, 15));
+  explosions.add(new Explosion(new PVector(mouseY, mouseX), (int)random(40, 800), 0.1 , 0.1, 30, random(-0.03, 0.03)));
 }
