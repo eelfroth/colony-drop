@@ -45,9 +45,9 @@ void setup() {
   lastMillis = millis();
 }
 void draw() {
- /*
+  /*
   if(counter < 0){
-    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(10, 60), 0.08 , 0.1, 60, random(-0.03, 0.03), 215));
+    bullets.add(new EnemyRocket(width/2, height/2, random(TWO_PI), 0.5, 3000));
     counter = random(0, 200);
   }else{
     counter--;

@@ -32,13 +32,6 @@ class SpaceColony{
     }
   }
   
-  boolean collisionAt(int x, int y, int layer){
-    if(layers.get(layer)[x][y] == null){
-      return true; 
-    }
-    return false;
-  }
-  
   void display(int delta, int _d){
     for(int x=0; x<w; x++) {
       for(int y=0; y<h; y++) {
