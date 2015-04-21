@@ -1,11 +1,10 @@
 # Colony Drop
-A game made for Ludum Dare 32 "An Unconventional Weapon" (jam)
+A game made for Ludum Dare 32 "An Unconventional Weapon" (jam category)
+Written in Processing 2.2.1
 
-code: 
-+ eelfroth
-+ PAFdelirium
-
-story:
-+ HELIAH
+contributors:
++ PAFdelirium (code, design)
++ HELIAH (story, illustration)
++ eelfroth (code, design, sound)
 			
-Ⓚ ALL RITES REVERSED
+3181 Ⓚ  ALL RITES REVERSED
