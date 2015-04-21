@@ -164,7 +164,7 @@ class EnemyRocket extends Bullet{
     target = null;
     hasTarget = false;
     targetingTime = 500;
-    propulsion = 0.04;
+    propulsion = 0.0004;
     lifetime = range;
   }
   
