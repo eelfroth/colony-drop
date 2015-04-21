@@ -26,6 +26,8 @@ PImage fighterImage;
 PImage rocketImage;
 PFont font;
 PImage planetImage, lizard1Image, lizard2Image;
+PImage[] blockImage;
+int blockImageCount;
 
 void setup() {
   size(800, 600);  
@@ -42,6 +44,11 @@ void setup() {
   planetImage = loadImage("planet.png");
   lizard1Image = loadImage("lizard01.png");
   lizard2Image = loadImage("lizard02.png");
+  blockImageCount = 3;
+  blockImage = new PImage[blockImageCount];
+  blockImage[0] = loadImage("block01.png");
+  blockImage[1] = loadImage("block02.png");
+  blockImage[2] = loadImage("block03.png");
   
   font = loadFont("DejaVuSerif-18.vlw");
   
@@ -117,8 +124,9 @@ void draw() {
     
     
     
-    colony.display(delta, currentDepth);
-  
+    //colony.display(delta, currentDepth);
+  colony.update(delta);
+  colony.display(delta, currentDepth);
  
   for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
@@ -128,8 +136,7 @@ void draw() {
       explosions.remove(i--);
     }
   }
-  colony.update(delta);
-  colony.display(delta, currentDepth);
+  
 
 
   for(int i = 0; i < bullets.size(); ++i){

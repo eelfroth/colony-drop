@@ -53,6 +53,12 @@ class Particle{
     radius -= 0.01*delta;
     if(gColor >= 0)
       gColor -= 1;
+      
+    Block bCollide = colony.collision(location.x, location.y);
+    if(bCollide != null){
+      
+      radius = 0;
+    }
   }
   
   void display(int delta){
