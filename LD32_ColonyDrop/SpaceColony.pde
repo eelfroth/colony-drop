@@ -11,6 +11,16 @@ class SpaceColony{
     generateColony(w, h, d);
   }
   
+  void update(int delta){
+    if(layerEmpty(currentDepth)){
+      if(currentDepth < d-1){
+        currentDepth++;
+      }else{
+          // GAME OVER
+      }
+    }
+  }
+  
   void generateColony(int _w, int _h, int _d){
     for(int i = 0; i < d; ++i){
       Block[][] layer = new Block[w][h];
@@ -48,6 +58,15 @@ class SpaceColony{
       return null;
     else
       return layers.get(currentDepth)[floor(x/BLOCK_SIZE)][floor(y/BLOCK_SIZE)];
+  }
+  
+  boolean layerEmpty(int layer){
+      for(int x=0; x<w; ++x) {
+        for(int y=0; y<h; ++y) {
+          if(layers.get(layer)[x][y] != null) return false;
+        }
+      }
+      return true;
   }
 }
 

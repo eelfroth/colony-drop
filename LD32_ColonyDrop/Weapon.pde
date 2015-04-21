@@ -57,7 +57,7 @@ class Weapon{
 
 class StandardGun extends Weapon{
    StandardGun(Fighter _owner){
-     super(_owner, 1, 1, 0.5, 200, 700);
+     super(_owner, 5, 5, 0.5, 200, 700);
    } 
    
    void improve(){
@@ -68,7 +68,7 @@ class StandardGun extends Weapon{
 
 class RocketLauncher extends Weapon{
    RocketLauncher(Fighter _owner){
-     super(_owner, 2, 2, 0.5, 500, 4000);
+     super(_owner, 5, 5, 0.5, 500, 4000);
    } 
    
    void shoot(float direction){

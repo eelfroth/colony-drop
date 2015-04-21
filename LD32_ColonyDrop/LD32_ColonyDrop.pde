@@ -74,6 +74,7 @@ void draw() {
       explosions.remove(i--);
     }
   }
+  colony.update(delta);
   colony.display(delta, currentDepth);
 
 

@@ -15,6 +15,13 @@ class Bullet{
   void update(int delta){
     location.add( PVector.mult(velocity, delta) );
     lifetime -= delta;
+    
+    Block bCollide = colony.collision(location.x, location.y);
+    if(bCollide != null){
+      
+      lifetime = 0;
+      colony.layers.get(currentDepth)[floor(location.x/BLOCK_SIZE)][floor(location.y/BLOCK_SIZE)] = null;
+    }
   }
   
   void display(int delta){
@@ -79,14 +86,12 @@ class Rocket extends Bullet{
       location.add( PVector.mult(velocity, delta) );   
     }
     
-    if(targetingTime <= 0){
+    if(targetingTime <= 0 || target == null){
       findTarget();
       targetingTime = 500;
     }
-    
     lifetime -= delta;
     Block bCollide = colony.collision(location.x, location.y);
-    println(bCollide);
     if(bCollide != null){
       
       lifetime = 0;
