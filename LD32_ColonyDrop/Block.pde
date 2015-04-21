@@ -40,9 +40,9 @@ class Block {
         translate(location.x, location.y);
         
         stroke(10);
-        if      (depth==1) tint(15);
-        else if (depth==2) tint(8, 200);
-        else               tint(3, 128);
+        if      (depth==1) tint(20);
+        else if (depth==2) tint(15);
+        else               tint(10);
         
         image(blockImage[image], 0, 0, width, height);
       

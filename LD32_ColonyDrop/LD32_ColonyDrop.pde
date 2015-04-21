@@ -54,7 +54,7 @@ void setup() {
   
   camera = new View(0, 0, width, height);
   debugUI = new DebugUI(8, 8);
-  sky = new Sky(10000, 10);
+  sky = new Sky(10000, 100);
   
   
   lastMillis = millis();
@@ -66,7 +66,7 @@ void draw() {
   int delta = millis() - lastMillis;
   lastMillis = millis();
   
-  fill(0, 4 * delta);
+  fill(random(15), 4 * delta);
     noStroke();
     rect(0, 0, width, height);
   sky.display();

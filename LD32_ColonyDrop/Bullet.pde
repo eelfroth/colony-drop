@@ -148,16 +148,7 @@ class Rocket extends Bullet{
         camera.translateToView();  
         translate(location.x, location.y);
         
-        if (velocity.x > 0 && velocity.y > 0) 
-          rotate( acos(velocity.x / velocity.mag()) );
-        else if (velocity.x < 0 && velocity.y > 0) 
-          rotate( acos(-velocity.x / -velocity.mag()) );
-        else if (velocity.x > 0 && velocity.y < 0) 
-          rotate( asin(velocity.y / velocity.mag()) );
-        else if (velocity.x < 0 && velocity.y < 0) 
-          rotate(PI + asin(-velocity.y / velocity.mag()) );
-    
-        imageMode(CENTER);
+        rotate( velocity.heading() );
         
         if (hasTarget) {
           
@@ -254,14 +245,7 @@ class EnemyRocket extends Bullet{
         camera.translateToView();  
         translate(location.x, location.y);
         
-        if (velocity.x > 0 && velocity.y > 0) 
-          rotate( acos(velocity.x / velocity.mag()) );
-        else if (velocity.x < 0 && velocity.y > 0) 
-          rotate( acos(-velocity.x / -velocity.mag()) );
-        else if (velocity.x > 0 && velocity.y < 0) 
-          rotate( asin(velocity.y / velocity.mag()) );
-        else if (velocity.x < 0 && velocity.y < 0) 
-          rotate(PI + asin(-velocity.y / velocity.mag()) );
+        rotate( velocity.heading() );
     
         imageMode(CENTER);
         

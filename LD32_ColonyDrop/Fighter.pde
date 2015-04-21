@@ -60,10 +60,11 @@ class Fighter {
     //update vectors
     if(acceleration == 0.0 && velocity.mag() > 0.00000001){
       
-      velocity.mult(0.99);
+      velocity.mult(0.995);
     }else {
       vAcc.set(polarVector(rotation, acceleration));
-      vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()))/2);
+      vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()) +(maxSpeed-velocity.mag()))/3 );
+      //vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()))/2);
       //vAcc.mult( maxSpeed-velocity.mag());
       velocity.add( PVector.mult(vAcc, delta) );
     }
@@ -109,8 +110,8 @@ class Fighter {
         
         if (acceleration != 0.0) {
           
-        tint(255, 100 + random(155), random(50), delta * random(20));
-        image(sparkImage, -length/2 , 0.0, 10 + random(48), 8 + random(20));
+          tint(255, 100 + random(155), random(50), delta * random(20));
+          image(sparkImage, -length/2 , 0.0, 10 + random(48), 8 + random(20));
         }
         //noTint();
         tint(#BABCAF);
