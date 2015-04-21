@@ -86,7 +86,7 @@ class Rocket extends Bullet{
       location.add( PVector.mult(velocity, delta) );   
     }
     
-    if(targetingTime <= 0 || target == null){
+    if(targetingTime <= 0){
       findTarget();
       targetingTime = 500;
     }
