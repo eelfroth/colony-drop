@@ -83,15 +83,21 @@ class Rocket extends Bullet{
       findTarget();
       targetingTime = 500;
     }
-    lifetime -= delta;
     
+    lifetime -= delta;
+    Block bCollide = colony.collision(location.x, location.y);
+    println(bCollide);
+    if(bCollide != null){
+      
+      lifetime = 0;
+      colony.layers.get(currentDepth)[floor(location.x/BLOCK_SIZE)][floor(location.y/BLOCK_SIZE)] = null;
+    }
   }
   
   void findTarget(){
      for(int x = 0; x < colony.w; ++x){
        for(int y = 0; y < colony.h; ++y){
          Block temp = (Block) colony.layers.get(currentDepth)[x][y];
-         //println(temp);
          if(temp != null && target != null){
            if(dist(location.x, location.y, target.location.x, target.location.y) > dist(location.x, location.y, temp.location.x, temp.location.y)){
              target = temp;
@@ -102,7 +108,6 @@ class Rocket extends Bullet{
          }
        }
      }
-     println(target);
      hasTarget = true;
    }
  
@@ -164,7 +169,7 @@ class EnemyRocket extends Bullet{
     target = null;
     hasTarget = false;
     targetingTime = 500;
-    propulsion = 0.0004;
+    propulsion = 0.0002;
     lifetime = range;
   }
   

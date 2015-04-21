@@ -1,10 +1,12 @@
 class SpaceColony{
+  PVector location;
   int w, h, d;
   ArrayList<Block[][]> layers;
   SpaceColony(int _w, int _h, int _d){
     w = _w;
     h = _h;
     d = _d;
+    location = new PVector(0, 0);
     layers = new ArrayList();
     generateColony(w, h, d);
   }
@@ -39,7 +41,14 @@ class SpaceColony{
           layers.get(_d)[x][y].display();
       }
     }
-}
+  }
+  
+  Block collision(float x, float y){
+    if(x < location.x || x > location.x + w*BLOCK_SIZE || y < location.y || y > location.y +h*BLOCK_SIZE)
+      return null;
+    else
+      return layers.get(currentDepth)[floor(x/BLOCK_SIZE)][floor(y/BLOCK_SIZE)];
+  }
 }
 
 

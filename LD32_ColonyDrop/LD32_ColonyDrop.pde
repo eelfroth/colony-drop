@@ -11,6 +11,7 @@ Fighter testFighter;
 SpaceColony colony;
 ArrayList<Explosion> explosions;
 ArrayList<Bullet> bullets;
+ArrayList<EnemyFighter> enemyFighters;
 DebugUI debugUI;
 View camera;
 
@@ -28,10 +29,11 @@ void setup() {
   smooth();
   
   debugUI = new DebugUI(8, 8);
-  testFighter = new Fighter(width/2, height/2);
+  testFighter = new Fighter(0, 0);
   
   explosions = new ArrayList<Explosion>();
   bullets    = new ArrayList<Bullet>();
+  enemyFighters = new ArrayList<EnemyFighter>();
   
   sparkImage = loadImage("spark.png");
   shotImage  = loadImage("shot.png");
@@ -45,14 +47,14 @@ void setup() {
   lastMillis = millis();
 }
 void draw() {
-  /*
+  
   if(counter < 0){
-    bullets.add(new EnemyRocket(width/2, height/2, random(TWO_PI), 0.5, 3000));
+    enemyFighters.add(new EnemyFighter(new PVector(width/2, height/2), random(TWO_PI), 0.3));
     counter = random(0, 200);
   }else{
     counter--;
   }
-  */
+  
   int delta = millis() - lastMillis;
   lastMillis = millis();
   
@@ -83,6 +85,12 @@ void draw() {
         bullet.onDeath();
         bullets.remove(i--);
     }
+  }
+  
+  for(int i = 0; i < enemyFighters.size(); ++i){
+    EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(i);
+    enemyFighter.update(delta);
+    enemyFighter.display(delta);
   }
   
   testFighter.display(delta);
