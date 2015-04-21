@@ -58,9 +58,10 @@ class Fighter {
     }
     */
     //update vectors
-    if(acceleration == 0.0) 
+    if(acceleration == 0.0 && velocity.mag() > 0.00000001){
+      
       velocity.mult(0.99);
-    else {
+    }else {
       vAcc.set(polarVector(rotation, acceleration));
       vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()))/2);
       //vAcc.mult( maxSpeed-velocity.mag());
@@ -117,6 +118,6 @@ class Fighter {
       popMatrix();
     }
   }
-  
-  
 }
+
+

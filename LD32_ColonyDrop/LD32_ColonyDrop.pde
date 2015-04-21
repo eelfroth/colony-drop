@@ -13,6 +13,7 @@ Fighter testFighter;
 SpaceColony colony;
 ArrayList<Explosion> explosions;
 ArrayList<Bullet> bullets;
+ArrayList<EnemyFighter> enemyFighters;
 DebugUI debugUI;
 View camera;
 Sky sky;
@@ -33,8 +34,7 @@ void setup() {
   background(0);
   smooth();
   
-  
-  
+ 
   sparkImage = loadImage("spark.png");
   shotImage  = loadImage("shot.png");
   fighterImage = loadImage("fighter.png");
@@ -53,14 +53,9 @@ void setup() {
   lastMillis = millis();
 }
 void draw() {
- /*
-  if(counter < 0){
-    explosions.add(new Explosion(new PVector(width/2, height/2), (int)random(10, 60), 0.08 , 0.1, 60, random(-0.03, 0.03), 215));
-    counter = random(0, 200);
-  }else{
-    counter--;
-  }
-  */
+  
+  
+  
   int delta = millis() - lastMillis;
   lastMillis = millis();
   
@@ -80,6 +75,7 @@ void draw() {
     popMatrix();
   }
   
+
   else if (mode == "intro") {
     pushMatrix();
     
@@ -109,6 +105,13 @@ void draw() {
   else if (mode == "game") {
     introText = null;
     
+    if(counter < 0){
+    enemyFighters.add(new EnemyFighter(new PVector(width/2, height/2), random(TWO_PI), 0.3));
+    counter = random(0, 200);
+    }else{
+      counter--;
+    }
+    
     testFighter.update(delta);
     camera.update(delta);
     
@@ -116,28 +119,40 @@ void draw() {
     
     colony.display(delta, currentDepth);
   
-    for(int i = 0; i < explosions.size(); ++i){
-      Explosion explosion = (Explosion) explosions.get(i);
-      explosion.update(delta);
-      explosion.display(delta);
-      if(explosion.particles.size() < 1) {
-        explosions.remove(i--);
-      }
+ 
+  for(int i = 0; i < explosions.size(); ++i){
+    Explosion explosion = (Explosion) explosions.get(i);
+    explosion.update(delta);
+    explosion.display(delta);
+    if(explosion.particles.size() < 1) {
+      explosions.remove(i--);
     }
-    for(int i = 0; i < bullets.size(); ++i){
-      Bullet bullet = (Bullet) bullets.get(i);
-      bullet.update(delta);
-      bullet.display(delta);
-      if(bullet.lifetime <= 0){ 
-          bullet.onDeath();
-          bullets.remove(i--);
-      }
+  }
+  colony.update(delta);
+  colony.display(delta, currentDepth);
+
+
+  for(int i = 0; i < bullets.size(); ++i){
+    Bullet bullet = (Bullet) bullets.get(i);
+    bullet.update(delta);
+    bullet.display(delta);
+    if(bullet.lifetime <= 0){ 
+        bullet.onDeath();
+        bullets.remove(i--);
+    }
+  }
+    
+    for(int i = 0; i < enemyFighters.size(); ++i){
+      EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(i);
+      enemyFighter.update(delta);
+      enemyFighter.display(delta);
     }
     
     testFighter.display(delta);
     
   }
   
+
   //debugUI.update(delta);
   //debugUI.display();
 }
@@ -149,7 +164,9 @@ void startGame() {
   colony = new SpaceColony(20, 20, 10);
   
   debugUI = new DebugUI(8, 8);
-  testFighter = new Fighter(width/2, height/2);
+  testFighter = new Fighter(0, 0);
+
+  enemyFighters = new ArrayList<EnemyFighter>();
   
   explosions = new ArrayList<Explosion>();
   bullets    = new ArrayList<Bullet>();
@@ -163,5 +180,6 @@ void startIntro() {
   introImageCounter = 0;
   introText = new Teleprompter("story.txt", 5 , 80, float(height)/1.5, width-160, 50);
   mode = "intro";
+
 }
 

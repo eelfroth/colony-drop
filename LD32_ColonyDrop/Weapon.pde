@@ -57,7 +57,7 @@ class Weapon{
 
 class StandardGun extends Weapon{
    StandardGun(Fighter _owner){
-     super(_owner, 1, 1, 0.5, 200, 700);
+     super(_owner, 5, 5, 0.5, 200, 700);
    } 
    
    void improve(){
