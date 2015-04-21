@@ -37,14 +37,7 @@ class EnemyFighter{
         camera.translateToView();  
         translate(location.x, location.y);
         
-        if (velocity.x > 0 && velocity.y > 0) 
-          rotate( acos(velocity.x / velocity.mag()) );
-        else if (velocity.x < 0 && velocity.y > 0) 
-          rotate( acos(-velocity.x / -velocity.mag()) );
-        else if (velocity.x > 0 && velocity.y < 0) 
-          rotate( asin(velocity.y / velocity.mag()) );
-        else if (velocity.x < 0 && velocity.y < 0) 
-          rotate(PI + asin(-velocity.y / velocity.mag()) );
+        rotate( velocity.heading() );
     
         imageMode(CENTER);
         //noTint();

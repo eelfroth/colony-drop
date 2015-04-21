@@ -51,8 +51,21 @@ class View {
     return inView(x, y) || inView(x + w, y) || inView(x, y + h) || inView(x + w, y + h);
   }
   
+   boolean inView(float x, float y, float z) {
+    if(x >=  location.x/(z+1) - offset.x && x <= location.x/(z+1) + width - offset.x) {
+      if(y >=  location.y/(z+1) - offset.y && y <= location.y/(z+1) + width - offset.y) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   void translateToView() {
     translate(-location.x + offset.x, -location.y + offset.y);
+  }
+  
+  void translateToView(float z) {
+    translate( (-location.x/(z+1) + offset.x), (-location.y/(z+1) + offset.y) );
   }
   
 }
