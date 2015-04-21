@@ -140,6 +140,13 @@ void draw() {
         bullet.onDeath();
         bullets.remove(i--);
     }
+    if(bullet.target != null){
+      if(dist(bullet.target.x, bullet.target.y, bullet.location.x, bullet.location.y) < 10){
+         enemyFighters.remove(bullet.target);
+         bullet.onDeath();
+         bullets.remove(i--); 
+      }
+    }
   }
     
     for(int i = 0; i < enemyFighters.size(); ++i){

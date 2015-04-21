@@ -1,5 +1,6 @@
 class Bullet{
   
+  EnemyFighter target;
   PVector location, velocity;
   float r;
   int lifetime, maxLifetime;
@@ -10,6 +11,7 @@ class Bullet{
     r = 24;
     maxLifetime = range;
     lifetime = maxLifetime;
+    target = null;
   }
   
   void update(int delta){
@@ -57,7 +59,7 @@ class Bullet{
 class Rocket extends Bullet{
   PVector acceleration;
   boolean hasTarget;
-  Block target;
+  //Block target;
   int targetingTime;
   float speed, propulsion;
   Rocket(float x, float y, float rotation, float speed, int range){
@@ -100,6 +102,7 @@ class Rocket extends Bullet{
   }
   
   void findTarget(){
+    /*
      for(int x = 0; x < colony.w; ++x){
        for(int y = 0; y < colony.h; ++y){
          Block temp = (Block) colony.layers.get(currentDepth)[x][y];
@@ -112,6 +115,18 @@ class Rocket extends Bullet{
            target = temp;
          }
        }
+     }
+     */
+     for(int i = 0; i < enemyFighters.size(); ++i){
+       EnemyFighter temp = (EnemyFighter) enemyFighters.get(i); 
+       if(temp != null && target != null){
+         if(dist(location.x, location.y, target.location.x, target.location.y) > dist(location.x, location.y, temp.location.x, temp.location.y)){
+             target = temp;
+           }
+         }
+         if(temp != null && target == null){
+           target = temp;
+         }
      }
      hasTarget = true;
    }
