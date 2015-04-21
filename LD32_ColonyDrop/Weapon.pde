@@ -49,6 +49,8 @@ class Weapon{
           shotsLeft--;
         }
       }
+      sLaser01.trigger();
+      //sLaser01.setVolume(0.1);
     }
   }
   
@@ -57,7 +59,7 @@ class Weapon{
 
 class StandardGun extends Weapon{
    StandardGun(Fighter _owner){
-     super(_owner, 5, 5, 0.5, 200, 700);
+     super(_owner, 5, 5, 0.5, 100, 7000);
    } 
    
    void improve(){
@@ -68,7 +70,7 @@ class StandardGun extends Weapon{
 
 class RocketLauncher extends Weapon{
    RocketLauncher(Fighter _owner){
-     super(_owner, 1, 1, 0.5, 500, 4000);
+     super(_owner, 1, 1, 0.5, 700, 4000);
    } 
    
    void shoot(float direction){
@@ -83,6 +85,8 @@ class RocketLauncher extends Weapon{
           shotsLeft--;
         }
       }
+      sLaser02.trigger();
+      //sLaser02.setVolume(0.1);
     }
   }
 }

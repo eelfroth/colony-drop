@@ -24,7 +24,7 @@ class Fighter {
     
     bullets = new ArrayList<Bullet>();
     weapon = new StandardGun(this);
-    weapon = new RocketLauncher(this);
+    //weapon = new RocketLauncher(this);
     
   }
   

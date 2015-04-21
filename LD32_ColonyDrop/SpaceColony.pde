@@ -38,13 +38,13 @@ class SpaceColony{
       for(int y=0; y<h; y++) {
         if(layers.get(_d)[x][y] != null) 
           layers.get(_d)[x][y].display();
-        else if(layers.get(_d + 1) != null) {
+        else if(layers.size() > _d + 1 && layers.get(_d + 1) != null) {
           if(layers.get(_d + 1)[x][y] != null) 
             layers.get(_d + 1)[x][y].displayBG(1);
-          else if(layers.get(_d + 2) != null) {
+          else if(layers.size() > _d + 2 && layers.get(_d + 2) != null) {
             if(layers.get(_d + 2)[x][y] != null) 
               layers.get(_d + 2)[x][y].displayBG(2);
-            else if(layers.get(_d + 3) != null) {
+            else if(layers.size() > _d + 3 && layers.get(_d + 3) != null) {
               if(layers.get(_d + 3)[x][y] != null) 
                 layers.get(_d + 3)[x][y].displayBG(3);
             }

@@ -30,7 +30,8 @@ PImage[] blockImage;
 int blockImageCount;
 
 void setup() {
-  size(800, 600);  
+  //size(800, 600);  
+  size(displayWidth, displayHeight, P2D);
   frameRate(-1);
   
   background(0);
@@ -56,6 +57,7 @@ void setup() {
   debugUI = new DebugUI(8, 8);
   sky = new Sky(10000, 100);
   
+  initializeAudio();
   
   lastMillis = millis();
 }
@@ -67,8 +69,8 @@ void draw() {
   lastMillis = millis();
   
   fill(random(15), 4 * delta);
-    noStroke();
-    rect(0, 0, width, height);
+  noStroke();
+  rect(0, 0, width, height);
   sky.display();
   
   if (mode == "title") {
@@ -148,12 +150,15 @@ void draw() {
         bullets.remove(i--);
     }
     // hier is vielleicht noch was an rechenleistung zu sparen wenn man bei dieser iteration bereits die enemyFighter updatet und drawed und dann da weiter macht
-    for(int k = 0; k < enemyFighters.size(); ++k){
-      EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(k);
-      if(dist(enemyFighter.location.x, enemyFighter.location.y, bullet.location.x, bullet.location.y) < 20){
-         enemyFighters.remove(enemyFighter);
-         bullet.onDeath();
-         bullets.remove(i--); 
+    else {
+      for(int k = 0; k < enemyFighters.size(); ++k){
+        EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(k);
+        if(dist(enemyFighter.location.x, enemyFighter.location.y, bullet.location.x, bullet.location.y) < 20){
+           enemyFighters.remove(enemyFighter);
+           enemyFighter.onDeath();
+           bullet.onDeath();
+           bullets.remove(i--); 
+        }
       }
     }
   }
@@ -177,7 +182,11 @@ void startGame() {
   //    colony dimensions:  w   h   d
   //introText = null;
   
-  colony = new SpaceColony(20, 20, 10);
+  sIntro.pause();
+  sIntro.rewind();
+  sBgm.loop();
+  
+  colony = new SpaceColony(200, 200, 100);
   
   debugUI = new DebugUI(8, 8);
   testFighter = new Fighter(0, 0);

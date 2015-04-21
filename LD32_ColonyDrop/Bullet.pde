@@ -23,6 +23,9 @@ class Bullet{
       
       lifetime = 0;
       colony.layers.get(currentDepth)[floor(location.x/BLOCK_SIZE)][floor(location.y/BLOCK_SIZE)] = null;
+      
+      sNoise03.trigger();
+      //sNoise03.setVolume(0.1);
     }
   }
   
@@ -72,6 +75,10 @@ class Rocket extends Bullet{
   }
   
   void update(int delta){
+    if(target == null) {
+        hasTarget = false;
+        findTarget();
+    }
     if(!hasTarget){
       location.add( PVector.mult(velocity, delta) );
       targetingTime -= delta;
@@ -128,7 +135,7 @@ class Rocket extends Bullet{
            target = temp;
          }
      }
-     hasTarget = true;
+     if(target != null)hasTarget = true;
    }
  
   void display(int delta) {
@@ -166,6 +173,8 @@ class Rocket extends Bullet{
    void onDeath(){
      explosions.add(new Explosion(location, (int)random(30, 60), 0.1 , 0.1, 30, random(-0.03, 0.03), 180));
      explosions.add(new Explosion(location, (int)random(20, 60), 0.01 , 0.05, 30, random(-0.04, 0.04), 255));
+     sNoise02.trigger();
+     //sNoise02.setVolume(0.1);
    }
 }
 

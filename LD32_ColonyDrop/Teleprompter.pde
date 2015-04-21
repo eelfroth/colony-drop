@@ -79,7 +79,7 @@ class Teleprompter {
       
       translate(location.x, location.y);
       
-      fill(0, 200);
+      fill(0, 100);
       //noFill();
       stroke(#629D67);
       rect(0, 0, width, 24*no_lines);
