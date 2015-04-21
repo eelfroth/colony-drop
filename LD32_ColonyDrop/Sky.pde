@@ -37,12 +37,12 @@ class Star {
           rotate(testFighter.velocity.heading());
         }
         
-        fill(100, random(255));
+        fill(160, random(255));
         //strokeWeight(1);
         noStroke();
         if(mode == "game") {
           float mag = 1+testFighter.velocity.mag();
-          ellipse( 0,0, radius * mag * mag * mag * mag * mag * mag * mag, radius);
+          ellipse( 0,0, radius * mag * mag * mag * mag * mag, radius);
         }
         else ellipse( 0,0, radius, radius);
   
