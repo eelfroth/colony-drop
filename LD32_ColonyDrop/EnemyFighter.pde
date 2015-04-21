@@ -14,7 +14,7 @@ class EnemyFighter{
       acceleration.normalize();
       acceleration.mult(propulsion);
       
-      acceleration.mult( ((PVector.angleBetween(acceleration, velocity) / HALF_PI) +(speed-velocity.mag()))/2);
+      acceleration.mult( ((PVector.angleBetween(acceleration, velocity) / PI) +(speed-velocity.mag()))/2);
       acceleration.rotate(random(-0.5, 0.5));
       velocity.add(PVector.mult(acceleration, delta));
       location.add( PVector.mult(velocity, delta) );   

@@ -24,7 +24,7 @@ class Fighter {
     
     bullets = new ArrayList<Bullet>();
     weapon = new StandardGun(this);
-    //weapon = new RocketLauncher(this);
+    weapon = new RocketLauncher(this);
     
   }
   
@@ -63,7 +63,7 @@ class Fighter {
       velocity.mult(0.995);
     }else {
       vAcc.set(polarVector(rotation, acceleration));
-      vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()) +(maxSpeed-velocity.mag()))/3 );
+      vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / PI) +(maxSpeed-velocity.mag()))/2 );
       //vAcc.mult( ((PVector.angleBetween(vAcc, velocity) / HALF_PI) +(maxSpeed-velocity.mag()))/2);
       //vAcc.mult( maxSpeed-velocity.mag());
       velocity.add( PVector.mult(vAcc, delta) );

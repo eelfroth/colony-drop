@@ -150,7 +150,7 @@ void draw() {
         bullets.remove(i--);
     }else{
     // hier is vielleicht noch was an rechenleistung zu sparen wenn man bei dieser iteration bereits die enemyFighter updatet und drawed und dann da weiter macht
-    else {
+    //else {
       for(int k = 0; k < enemyFighters.size(); ++k){
         EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(k);
         if(dist(enemyFighter.location.x, enemyFighter.location.y, bullet.location.x, bullet.location.y) < 20){
@@ -160,7 +160,7 @@ void draw() {
            bullets.remove(i--); 
         }
       }
-    }
+   // }
     }
   }
     

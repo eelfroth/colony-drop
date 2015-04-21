@@ -88,7 +88,7 @@ class Rocket extends Bullet{
       acceleration.normalize();
       acceleration.mult(propulsion);
       
-      acceleration.mult( ((PVector.angleBetween(acceleration, velocity) / HALF_PI) +(speed-velocity.mag()))/2);
+      acceleration.mult( ((PVector.angleBetween(acceleration, velocity) / PI) +(speed-velocity.mag()))/2);
       velocity.add(PVector.mult(acceleration, delta));
       /*if(velocity.mag() > speed)
         velocity.normalize(); */
