@@ -146,7 +146,7 @@ void draw() {
     if(bullet.lifetime <= 0){ 
         bullet.onDeath();
         bullets.remove(i--);
-    }
+    }else{
     // hier is vielleicht noch was an rechenleistung zu sparen wenn man bei dieser iteration bereits die enemyFighter updatet und drawed und dann da weiter macht
     for(int k = 0; k < enemyFighters.size(); ++k){
       EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(k);
@@ -155,6 +155,7 @@ void draw() {
          bullet.onDeath();
          bullets.remove(i--); 
       }
+    }
     }
   }
     
