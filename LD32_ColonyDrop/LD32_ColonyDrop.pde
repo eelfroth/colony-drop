@@ -64,10 +64,7 @@ void draw() {
   fill(0, 4 * delta);
   noStroke();
   rect(0, 0, width, height);
-  
-  colony.display(delta, currentDepth);
-
-  for(int i = 0; i < explosions.size(); ++i){
+    for(int i = 0; i < explosions.size(); ++i){
     Explosion explosion = (Explosion) explosions.get(i);
     explosion.update(delta);
     explosion.display(delta);
@@ -75,6 +72,9 @@ void draw() {
       explosions.remove(i--);
     }
   }
+  colony.display(delta, currentDepth);
+
+
   for(int i = 0; i < bullets.size(); ++i){
     Bullet bullet = (Bullet) bullets.get(i);
     bullet.update(delta);

@@ -68,7 +68,7 @@ class StandardGun extends Weapon{
 
 class RocketLauncher extends Weapon{
    RocketLauncher(Fighter _owner){
-     super(_owner, 5, 5, 0.5, 500, 4000);
+     super(_owner, 2, 2, 0.5, 500, 4000);
    } 
    
    void shoot(float direction){

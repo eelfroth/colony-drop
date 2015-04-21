@@ -117,6 +117,6 @@ class Fighter {
       popMatrix();
     }
   }
-  
-  
 }
+
+

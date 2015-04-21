@@ -13,9 +13,8 @@ class SpaceColony{
     for(int i = 0; i < d; ++i){
       Block[][] layer = new Block[w][h];
       layers.add(layer);
-      for(int x=0; x<w; x++) {
-        for(int y=0; y<h; y++) {
-          //layers.get(i)[x][y] = null;
+      for(int x=0; x<w; ++x) {
+        for(int y=0; y<h; ++y) {
           float dist = dist(x, y, w/2, h/2);
           if ( dist < 7 && dist > 6) {
             layers.get(i)[x][y] = new Block(x*BLOCK_SIZE, y*BLOCK_SIZE);
@@ -31,6 +30,13 @@ class SpaceColony{
         }
       }
     }
+  }
+  
+  boolean collisionAt(int x, int y, int layer){
+    if(layers.get(layer)[x][y] == null){
+      return true; 
+    }
+    return false;
   }
   
   void display(int delta, int _d){

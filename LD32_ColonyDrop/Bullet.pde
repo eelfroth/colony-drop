@@ -15,6 +15,9 @@ class Bullet{
   void update(int delta){
     location.add( PVector.mult(velocity, delta) );
     lifetime -= delta;
+    if(colony.collisionAt(round(location.x), round(location.y), currentDepth)){
+      lifetime = 0; 
+    }
   }
   
   void display(int delta){
