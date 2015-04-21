@@ -147,6 +147,15 @@ void draw() {
         bullet.onDeath();
         bullets.remove(i--);
     }
+    // hier is vielleicht noch was an rechenleistung zu sparen wenn man bei dieser iteration bereits die enemyFighter updatet und drawed und dann da weiter macht
+    for(int k = 0; k < enemyFighters.size(); ++k){
+      EnemyFighter enemyFighter = (EnemyFighter) enemyFighters.get(k);
+      if(dist(enemyFighter.location.x, enemyFighter.location.y, bullet.location.x, bullet.location.y) < 20){
+         enemyFighters.remove(enemyFighter);
+         bullet.onDeath();
+         bullets.remove(i--); 
+      }
+    }
   }
     
     for(int i = 0; i < enemyFighters.size(); ++i){
